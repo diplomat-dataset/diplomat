@@ -6,7 +6,7 @@ This repo contains the testing code for our paper [DiPlomat: A Dialogue Dataset 
 
 <img src="./figure/punchline_example.png" alt="punchline_example" style="zoom:50%;" />
 
-The above figures is examples of our dataset. Here we offer code for the reproduction of results mentioned in our paper.
+The above figures are examples of our dataset. Here we offer code for the reproduction of results mentioned in our paper.
 
 ---
 
