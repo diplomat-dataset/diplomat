@@ -2,9 +2,9 @@
 ---
 This repo contains the testing code for our paper [DiPlomat: A Dialogue Dataset for Situated Pragmatic Reasoning](https://arxiv.org/abs/2306.09030) (paper link). A [website (website link)](https://diplomat-dataset.github.io) is also available for more information. If you have more questions or suggestions, please email me at [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku.edu.cn).
 
-![teaser](/Users/lihengli/Desktop/teaser.png)
+![teaser](./figure/teaser.png)
 
-<img src="/Users/lihengli/Desktop/punchline_example.png" alt="punchline_example" style="zoom:50%;" />
+<img src="./figure/punchline_example.png" alt="punchline_example" style="zoom:50%;" />
 
 The above figures is examples of our dataset. Here we offer code for the reproduction of results mentioned in our paper.
 
@@ -39,7 +39,7 @@ Feel free to connect us at  [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku
 
 Due to limitation of GitHub repo, our dataset is stored in Google Drive, therefore please download through this [link](https://drive.google.com/drive/folders/1Z33-6pXay9R-zRXJcFNtxaZMjTv9Zfs9). As all datasets are downloaded, please put them in the **dataset** folder.
 
-<img src="/Users/lihengli/Library/Application Support/typora-user-images/image-20230731114158796.png" alt="image-20230731114158796" style="zoom:50%;" />
+<img src="./figure/image-20230731114158796.png" alt="image-20230731114158796" style="zoom:50%;" />
 
 ### B. TASK 1: Pragmatic Identification and Reasoning (PIR)
 
@@ -59,6 +59,10 @@ The first subprocess is named as **Conversation $→$ Pragmatic Turn (C $→$ P)
 cd PIR_subtask1 # move to the folder of subtask 1
 # run the code with bert_base model
 python main_test.py --model_checkpoint bert-base-uncased --seed 42 --batch_size 24 
+# run the code with gpt2
+python main_test.py --model_checkpoint gpt2 --seed 42 --batch_size 24 
+# run the code with DialoGPT
+python main_test.py --model_checkpoint microsoft/DialoGPT-medium --seed 42 --batch_size 24 
 ```
 
 *  Subtask 2: CP $→$ R
@@ -72,7 +76,8 @@ python test_subtask2.py --model_checkpoint bert-base-uncased --seed 42 --batch_s
 # PS: Run GPT-like model with the following code
 # run the code with gpt base model
 python gpt_test_pytorch.py --model_checkpoint gpt2 --seed 42 --batch_size 8
-
+# run the code with DialoGPT
+python gpt_test_pytorch.py --model_checkpoint microsoft/DialoGPT-medium --seed 42 --batch_size 8
 ```
 
 * Subtask 3:  C $→$ PR

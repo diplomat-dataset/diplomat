@@ -38,7 +38,7 @@ def setup_seed(seed):
     set_seed(seed)
 setup_seed(seed)
 from datasets import load_from_disk
-dataset = load_from_disk("final_with_split_IDAR_second_subtask_dataset")
+dataset = load_from_disk("../../dataset/PIR_second_subtask_dataset")
 
 from transformers import AutoTokenizer
 
@@ -138,7 +138,7 @@ else:
     data_collator = DataCollatorForMultipleChoice(tokenizer=tokenizer)
 
 training_args = TrainingArguments(
-    output_dir=f"/scratch/nlp/lihengli/multiple/subtask2/{model_name}/{seed}/",
+    output_dir=f"./result/PIR_subtask2/{model_name}/{seed}/",
     evaluation_strategy="steps",
     save_strategy="steps",
     load_best_model_at_end=True,
@@ -161,10 +161,8 @@ trainer = Trainer(
 )
 print("-"*20)
 
-print(f"/scratch/nlp/lihengli/multiple/subtask2/{model_name}/{seed}/checkpoint-19000")
 print("-"*20)
-trainer.train(f"/scratch/nlp/lihengli/multiple/subtask2/{model_name}/{seed}/checkpoint-18000")
-#trainer.train()
+trainer.train()
 result = trainer.predict(tokenized_dataset["test"])
 print(result.metrics)
 wandb.log(result.metrics)

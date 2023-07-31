@@ -51,7 +51,7 @@ num_added_tokens = tokenizer.add_special_tokens({"cls_token": "[CLS]"})
 embedding_layer = model.resize_token_embeddings(len(tokenizer))
 tokenizer.pad_token = tokenizer.eos_token
 model.config.pad_token_id = model.config.eos_token_id
-dataset = load_from_disk("final_with_split_IDAR_second_subtask_dataset")
+dataset = load_from_disk("../../dataset/PIR_second_subtask_dataset")
 
 def build_choice(example):
     text = ""
@@ -181,53 +181,7 @@ validation_best = 0
 best_epoch = 0
 start_epoch = 0
 
-if args.resume:
-    print("*" * 20)
-    print(f"resume : {args.resume}")
-    print("*" * 20)
-    if seed == 1:
-#        best_epoch = 2
-#        validation_best = 0.2827868852459016
-        checkpoint = torch.load(args.resume)
-        best_epoch = checkpoint['best_epoch']
-        validation_best = checkpoint['validation_best']
-        start_epoch = checkpoint['epoch'] + 1
-        model.load_state_dict(checkpoint['model_state_dict'])
-        model.to(device)
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        print("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
-        print(f"best epoch : {best_epoch}, validation best : {validation_best}")
-
-
-
-    elif seed == 19:
-#        best_epoch = 21
-#        validation_best = 0.2786885245901639
-        checkpoint = torch.load(args.resume)
-        best_epoch = checkpoint['best_epoch']
-        validation_best = checkpoint['validation_best']
-        start_epoch = checkpoint['epoch'] + 1
-        model.load_state_dict(checkpoint['model_state_dict'])
-        model.to(device)
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        print("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
-        print(f"best epoch : {best_epoch}, validation best : {validation_best}")
-    elif seed == 588:
-        checkpoint = torch.load(args.resume)
-        best_epoch = checkpoint['best_epoch']
-        validation_best = checkpoint['validation_best']
-        start_epoch = checkpoint['epoch'] + 1
-        model.load_state_dict(checkpoint['model_state_dict'])
-        model.to(device)
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        print("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
-        print(f"best epoch : {best_epoch}, validation best : {validation_best}")
-
-
-
-    else:
-        print("Wrong seed!")
-    
+   
 import os
 model_name = model_checkpoint.split("/")[-1]
 for epoch in tqdm(range(start_epoch,epochs)):
@@ -239,12 +193,12 @@ for epoch in tqdm(range(start_epoch,epochs)):
     if validation_acc > validation_best:
         best_epoch = epoch
         validation_best = validation_acc
-        file_path = f"/scratch/nlp/lihengli/IDAR2_torch/{model_name}/{seed}/best_epoch_{model_name}_{seed}.txt"
+        file_path = f"./result/PIR_subtask2/{model_name}/{seed}/best_epoch_{model_name}_{seed}.txt"
         if not os.path.exists(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))  
         with open(file_path,"w") as file:
             file.write(f"best epoch : {best_epoch}, validation score : {validation_best}")
-    checkpoint_save_path = f"/scratch/nlp/lihengli/IDAR2_torch/{model_name}/{seed}/epoch_{epoch}"
+    checkpoint_save_path = f"./result/PIR_subtask2/{model_name}/{seed}/epoch_{epoch}"
     #print(os.path.dirname(checkpoint_save_path))
     if not os.path.exists(os.path.dirname(checkpoint_save_path)):
         #print("hahha")
@@ -257,7 +211,7 @@ for epoch in tqdm(range(start_epoch,epochs)):
             'validation_best':validation_best,
             'loss': loss,
             }, checkpoint_save_path)
-checkpoint = torch.load(os.path.join(f"/scratch/nlp/lihengli/IDAR2_torch/{model_name}/{seed}/epoch_{best_epoch}"))
+checkpoint = torch.load(os.path.join(f"./result/PIR_subtask2/{model_name}/{seed}/epoch_{best_epoch}"))
 model.load_state_dict(checkpoint['model_state_dict'])
 model.to(device)
 test_result = test(model,test_loader)

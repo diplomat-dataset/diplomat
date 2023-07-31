@@ -17,13 +17,6 @@ batch_size = args.batch_size
 print("-"*20)
 print(f"{model_checkpoint}, seed : {seed}, batch size : {batch_size}")
 print("-"*20)
-#batch_size = 80
-#if model_checkpoint == "microsoft/DialoGPT-medium" :
-#    batch_size = 8
-#if model_checkpoint == "gpt2":
-#    batch_size = 24
-
-
 
 import random
 from transformers import TrainingArguments, Trainer
@@ -40,7 +33,7 @@ setup_seed(seed)
 print("model checkpoint : ",model_checkpoint)
 wandb.init(project=f"IMAR",name=f"{model_checkpoint}_{seed}")
 
-dataset = load_from_disk("final_first_IDAR_dataset")
+dataset = load_from_disk("../../dataset/PIR_first_subtask_dataset")
 print(dataset)
 original_dataset = dataset
 def add_speaker(example):
@@ -134,7 +127,7 @@ data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 print("Loading the model")
 model_name = model_checkpoint.split("/")[-1]
 training_args = TrainingArguments(
-    output_dir=f"/scratch/nlp/lihengli/imar_subtask/{model_name}/{seed}/{model_name}_model",
+    output_dir=f"./result/PIR_subtask1/{model_name}/{seed}/{model_name}_model",
     learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
@@ -144,8 +137,6 @@ training_args = TrainingArguments(
     save_strategy="steps",
     load_best_model_at_end=True,
     report_to = "wandb"
-
-    
 )
 accuracy = evaluate.load("accuracy")
 def compute_metrics(eval_pred):
@@ -165,12 +156,9 @@ trainer = Trainer(
     compute_metrics=compute_metrics,
     
 )
-#print(f"/scratch/nlp/lihengli/imar_subtask/microsoft/DialoGPT-medium/{seed}/microsoft/DialoGPT-medium_model/checkpoint-26000")
 
 print("START TRAINING")
 print("-"*30)
-#print(f"/scratch/nlp/lihengli/imar_subtask/{model_checkpoint}/{seed}/{model_checkpoint}_model/checkpoint-31500")
-#trainer.train(f"/scratch/nlp/lihengli/imar_subtask/microsoft/deberta-v3-base/19/microsoft/deberta-v3-base_model/checkpoint-11000")
 trainer.train()
 result = trainer.predict(dataset['test'])
 predictions = result.predictions

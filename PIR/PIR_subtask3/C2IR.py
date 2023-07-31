@@ -22,7 +22,7 @@ if pi_checkpoint == "microsoft/DialoGPT-medium" :
     batch_size = 8
 if pi_checkpoint == "gpt2":
     batch_size = 24
-dataset = load_from_disk("final_first_IDAR_dataset")
+dataset = load_from_disk("../../dataset/PIR_first_subtask_dataset")
 dataset = dataset.rename_column('text','original_text')
 
 print(dataset)
@@ -115,7 +115,7 @@ from transformers import DataCollatorWithPadding
 
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 training_args = TrainingArguments(
-    output_dir=f"/scratch/nlp/lihengli/imar_subtask/{pi_checkpoint}/{pi_checkpoint}_model",
+    output_dir=f"./result/subtask1/{pi_checkpoint}/{pi_checkpoint}_model",
     learning_rate=2e-5,
     per_device_train_batch_size=batch_size,
     per_device_eval_batch_size=batch_size,
@@ -151,7 +151,7 @@ print(result)
 predictions = result.predictions
 pred = np.argmax(predictions,axis = -1)
 label = result.label_ids.tolist()
-second_dataset = load_from_disk("../subtask_two/final_with_split_IDAR_second_subtask_dataset")
+second_dataset = load_from_disk("../../dataset/PIR_second_subtask_dataset")
 if len(pred) != len(label):
     raise ValueError
 pi_list = []
@@ -178,7 +178,7 @@ print(len(pi_list))
 r_checkpoint = args.r_checkpoint
 batch_size = 16
 from datasets import load_from_disk
-dataset = load_from_disk("../subtask_two/final_with_split_IDAR_second_subtask_dataset")
+dataset = load_from_disk("../../dataset/PIR_second_subtask_dataset")
 
 from transformers import AutoTokenizer
 
