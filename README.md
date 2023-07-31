@@ -102,7 +102,7 @@ python C2IR_gpt.py --pi_checkpoint {pi_checkpoint} --r_checkpoint {r_checkpoint}
 
 <center style="color:red"><i>Please refer to our <a href="https://arxiv.org/abs/2306.09030" style="color: black">paper</a> for more detail</i></center>
 
-![Screenshot 2023-07-31 at 15.32.39](/Users/lihengli/Desktop/diplomt/diplomat/figure/Screenshot 2023-07-31 at 15.32.39.png)
+![Screenshot 2023-07-31 at 15.32.39](./figure/Screenshot 2023-07-31 at 15.32.39.png)
 
 Notice: When **test without gold**, the **Rationale** is out of reach for the model, while **testing with gold**, the **Rationale** is available.
 
