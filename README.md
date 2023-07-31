@@ -33,7 +33,7 @@ conda install -c conda-forge evaluate
 conda install -c conda-forge tqdm
 ```
 
-Feel free to connect us at  [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku.edu.cn)., if there is any problem.
+Feel free to connect us at  lihengli@stu.pku.edu.cn., if there is any problem.
 
 #### A.2 Data download
 
@@ -120,7 +120,7 @@ python run_seq2seq_qa_with_gold.py --model_checkpoint t5-small --seed 42 --batch
 
 ### D. Connect
 
-*Feel free to connect us by email at [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku.edu.cn) or raise a github issue, we will solve the problems as soon as possible*
+*Feel free to connect us by email at lihengli@stu.pku.edu.cn or raise a github issue, we will solve the problems as soon as possible*
 
 ### E. Citation
 
