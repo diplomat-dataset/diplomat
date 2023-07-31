@@ -37,7 +37,7 @@ Feel free to connect us at  [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku
 
 #### A.2 Data download
 
-Due to limitation of GitHub repo, our dataset is stored in Google Drive, therefore please download through this [link](https://drive.google.com/drive/folders/1Z33-6pXay9R-zRXJcFNtxaZMjTv9Zfs9). As all datasets are downloaded, please put them in the **dataset** folder.
+Due to the limitation of GitHub repo, our dataset is stored in Google Drive, therefore please download through this [link](https://drive.google.com/drive/folders/1Z33-6pXay9R-zRXJcFNtxaZMjTv9Zfs9). Once all datasets are downloaded, please put them in the **dataset** folder.
 
 <img src="./figure/image-20230731114158796.png" alt="image-20230731114158796" style="zoom:50%;" />
 
@@ -82,8 +82,6 @@ python gpt_test_pytorch.py --model_checkpoint microsoft/DialoGPT-medium --seed 4
 
 * Subtask 3:  C $→$ PR
 
-**NOTICE:**
-
 1. Noticed that subtask3 doesn't involve in training, therefore please offer two checkpoints for this subtask.
 2. The two checkpoints can be gained by running code of Subtask 1, and Subtask 2.
 3. pi_checkpoint: the checkpoint for C $→$ P (subtask 1)
@@ -96,5 +94,42 @@ python C2IR.py --pi_checkpoint {pi_checkpoint} --r_checkpoint {r_checkpoint}
 
 # PS: Run GPT-like model with the following code
 python C2IR_gpt.py --pi_checkpoint {pi_checkpoint} --r_checkpoint {r_checkpoint}
+```
+
+### C. TASK 2: Conversational Question Answering (CQA)
+
+#### C.1 A brief introduction of the task
+
+<center style="color:red"><i>Please refer to our <a href="https://arxiv.org/abs/2306.09030" style="color: black">paper</a> for more detail</i></center>
+
+![Screenshot 2023-07-31 at 15.32.39](/Users/lihengli/Desktop/diplomt/diplomat/figure/Screenshot 2023-07-31 at 15.32.39.png)
+
+Notice: When **test without gold**, the **Rationale** is out of reach for the model, while **testing with gold**, the **Rationale** is available.
+
+#### C.2 Testing on this task
+
+```shell
+# Test without gold
+# run the code with t5-samll
+python run_seq2seq_qa.py --model_checkpoint t5-small --seed 42 --batch_size 24
+
+# Test with gold
+# run the code with t5-samll
+python run_seq2seq_qa_with_gold.py --model_checkpoint t5-small --seed 42 --batch_size 24
+```
+
+### D. Connect
+
+*Feel free to connect us by email at [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku.edu.cn) or raise a github issue, we will solve the problems as soon as possible*
+
+### E. Citation
+
+```
+@inproceedings{neurips2023diplomat,
+    title={DiPlomat: A Dialogue Dataset for Situated Pragmatic Reasoning},
+    author={Anonymous Authors},
+    booktitle={NeurIPS 2023 Datasets and Benchmarks Track (Under Review)},
+    year={2023}
+}
 ```
 

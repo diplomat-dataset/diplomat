@@ -125,20 +125,8 @@ setup_seed(seed)
 
 # Set seed before initializing model.
 set_seed(seed)
-dataset = load_from_disk('with_split_qa_task_dataset')
-#dataset = load_from_disk('qa_task_dataset')
-#dataset = flatten(dataset)
-#dataset = dataset.shuffle(seed=seed)
-#dataset = dataset.train_test_split(test_size = 0.2,shuffle=False)
-#train_dataset = dataset['train']
-#test_dataset = dataset['test'].train_test_split(test_size=0.4,shuffle=False)
-#validation_dataset = test_dataset['test']
-#test_dataset = test_dataset['train']
-#dataset = DatasetDict({'train':train_dataset,'validation':validation_dataset,'test':test_dataset})
-#dataset.save_to_disk("with_split_qa_task_dataset")
-#exit()
+dataset = load_from_disk('../dataset/CQA_task_dataset')
 
-print(dataset)
 
 
 # See more about loading any type of standard or custom dataset (from files, python dict, pandas DataFrame, etc) at
@@ -229,7 +217,7 @@ def compute_metrics(eval_pred):
 
 
 args = Seq2SeqTrainingArguments(
-    output_dir=f"/scratch/nlp/lihengli/test_result_with_gold/{model_name}/{seed}/{model_name}-finetuned-seq2seq",
+    output_dir=f"./test_result/with_gold/{model_name}/{seed}/{model_name}-finetuned-seq2seq",
     evaluation_strategy="steps",
     save_strategy="steps",
     load_best_model_at_end=True,
@@ -263,7 +251,6 @@ trainer = Seq2SeqTrainer(
 )
 
 # Training
-#trainer.train("/scratch/nlp/lihengli/test_result_with_gold/unifiedqa-t5-large/588/unifiedqa-t5-large-finetuned-seq2seq/checkpoint-21000")
 trainer.train()
 result = trainer.predict(tokenized_dataset['test'])
 wandb.log(result.metrics)
