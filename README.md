@@ -1,6 +1,6 @@
 # **DiPlomat: A Dialogue Dataset for Situated Pragmatic Reasoning** (NeurIPS 2023 Datasets and Benchmarks Track (Under Review))
 ---
-This repo contains the testing code for our paper [DiPlomat: A Dialogue Dataset for Situated Pragmatic Reasoning](https://arxiv.org/abs/2306.09030) (paper link). A [website (website link)](https://diplomat-dataset.github.io) is also available for more information. If you have more questions or suggestions, please email me at [lihengli@stu.pku.edu.cn](mailto: 2000017754@stu.pku.edu.cn).
+This repo contains the testing code for our paper [DiPlomat: A Dialogue Dataset for Situated Pragmatic Reasoning](https://arxiv.org/abs/2306.09030) (paper link). A [website (website link)](https://diplomat-dataset.github.io) is also available for more information. If you have more questions or suggestions, please email me at lihengli@stu.pku.edu.cn.
 
 ![teaser](./figure/teaser.png)
 
