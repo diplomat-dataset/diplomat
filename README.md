@@ -29,7 +29,7 @@ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvi
 # conda install pytorch torchvision torchaudio cpuonly -c pytorch
 ```
 
-Feel free to connect us at  lihengli@stu.pku.edu.cn., if there is any problem.
+Feel free to contact us at  lihengli@stu.pku.edu.cn., if there is any problem.
 
 #### A.2 Data download
 
@@ -114,9 +114,9 @@ python run_seq2seq_qa.py --model_checkpoint t5-small --seed 42 --batch_size 24
 python run_seq2seq_qa_with_gold.py --model_checkpoint t5-small --seed 42 --batch_size 24
 ```
 
-### D. Connect
+### D. Contact
 
-*Feel free to connect us by email at lihengli@stu.pku.edu.cn or raise a github issue, we will solve the problems as soon as possible*
+*Feel free to contact us by email at lihengli@stu.pku.edu.cn or raise a github issue, we will solve the problems as soon as possible*
 
 ### E. Citation
 
