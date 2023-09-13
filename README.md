@@ -21,16 +21,12 @@ Create a new environment with anaconda (For more detail on anaconda, please refe
 ```shell
 conda create -n PragBot python=3.10
 conda activate PragBot
-conda install -c conda-forge datasets 
-conda install -c conda-forge transformers
+conda install -c conda-forge datasets transformers wandb evaluate tqdm
 conda install -c anaconda numpy 
-conda install -c conda-forge wandb 
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia # For cuda
 # We recommend using GPU, but it's still be able to run on cpu
 # Please uncomment the following line for on cpu running
 # conda install pytorch torchvision torchaudio cpuonly -c pytorch
-conda install -c conda-forge evaluate 
-conda install -c conda-forge tqdm
 ```
 
 Feel free to connect us at  lihengli@stu.pku.edu.cn., if there is any problem.
